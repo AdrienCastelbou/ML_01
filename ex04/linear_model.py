@@ -14,27 +14,37 @@ def show_datas_with_predict(x, y, y_hat):
     plt.show()
 
 def J_loss_function_evolution(lr, x, y):
-    thetas0 = np.linspace(lr.thetas[0], lr.thetas[0] + 10,6)
-    #thetas1 = np.linspace(thetas[1],thetas[1] + 10,6)
-    y_hat = lr.predict_(x)
-    print(y_hat, thetas0)
-    loss_ = lr.loss_(y, y_hat)
-    print(loss_)
+    thetas0 = np.linspace(86, 92, 6)
+    thetas1 = np.linspace(-14, -4, 100)
+    ax = plt.gca()
+    ax.set_ylim([0, 140])
+    for t0 in thetas0:
+        cost_values = []
+        for t1 in thetas1:
+            lr.thetas = np.array([[t0], [t1]])
+            y_hat = lr.predict_(x)
+            cost_values.append(lr.loss_(y, y_hat))
+        plt.plot(thetas1,cost_values, label=f"J(theta0={t0}, theta1")
+    plt.xlabel("theta1")
+    plt.ylabel("Cost function J(theta0, theta1)")
+    plt.legend()
+    plt.grid()
+    plt.show()
+
+
 
 def main(): 
     data = pd.read_csv("are_blue_pills_magics.csv")
     Xpill = np.array(data["Micrograms"]).reshape(-1,1)
     Yscore = np.array(data["Score"]).reshape(-1,1)
     linear_model1 = MyLR(np.array([[89.0], [-8]]))
-    J_loss_function_evolution(linear_model1, Xpill, Yscore)
-    return 
     linear_model2 = MyLR(np.array([[89.0], [-6]]))
     Y_model1 = linear_model1.predict_(Xpill)
     show_datas_with_predict(Xpill, Yscore, Y_model1)
     Y_model2 = linear_model2.predict_(Xpill)
     show_datas_with_predict(Xpill, Yscore, Y_model2)
+    J_loss_function_evolution(lr = linear_model1,x= Xpill,y= Yscore)
     print(MyLR.mse_(Yscore, Y_model1))
-    # 57.60304285714282
     print(MyLR.mse_(Yscore, Y_model2))
 
 
