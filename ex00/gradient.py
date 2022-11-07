@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def simple_gradient(x, y, theta):
         if type(x) != np.ndarray or type(theta) != np.ndarray or type(y) != np.ndarray:
             return None
