@@ -36,5 +36,5 @@ def main_test():
     print(simple_gradient(x, y, theta2))
 
 
-if __name == "__main__":
+if __name__ == "__main__":
     main_test()
