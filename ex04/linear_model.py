@@ -13,7 +13,7 @@ def show_datas_with_predict(x, y, y_hat):
     plt.legend()
     plt.show()
 
-def J_loss_function_evolution(lr, x, y):
+def J_loss_function_evolution(x, y):
     thetas0 = np.linspace(86, 92, 6)
     thetas1 = np.linspace(-14, -4, 100)
     ax = plt.gca()
@@ -21,7 +21,7 @@ def J_loss_function_evolution(lr, x, y):
     for t0 in thetas0:
         cost_values = []
         for t1 in thetas1:
-            lr.thetas = np.array([[t0], [t1]])
+            lr = MyLR(np.array([[t0], [t1]]))
             y_hat = lr.predict_(x)
             cost_values.append(lr.loss_(y, y_hat))
         plt.plot(thetas1,cost_values, label=f"J(theta0={t0}, theta1")
@@ -43,9 +43,9 @@ def main():
     show_datas_with_predict(Xpill, Yscore, Y_model1)
     Y_model2 = linear_model2.predict_(Xpill)
     show_datas_with_predict(Xpill, Yscore, Y_model2)
-    J_loss_function_evolution(lr = linear_model1,x= Xpill,y= Yscore)
-    print(linear_model1.mse_(Yscore, Y_model1))
-    print(linear_model1.mse_(Yscore, Y_model2))
+    J_loss_function_evolution(x= Xpill,y= Yscore)
+    print(MyLR.mse_(Yscore, Y_model1))
+    print(MyLR.mse_(Yscore, Y_model2))
 
 
 

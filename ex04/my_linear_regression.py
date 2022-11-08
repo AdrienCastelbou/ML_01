@@ -65,10 +65,17 @@ class MyLinearRegression:
         except:
             return None
 
-    
-    def mse_(self, y, y_hat):
+    @staticmethod
+    def mse_(y, y_hat):
         try:
-            self.check_datas([y_hat, y])
+            vectors = [y, y_hat]
+            for vector in vectors:
+                if type(vector) != np.ndarray or not len(vector):
+                    raise Exception("bad inputs")
+                if vector.ndim == 1:
+                    vector = vector.reshape(vector.shape[0], -1)
+                if vector.shape[1] != 1:
+                    raise Exception("bad inputs")
             return float(1 / (y.shape[0]) * (y_hat - y).T.dot(y_hat - y))
         except:
             return None
