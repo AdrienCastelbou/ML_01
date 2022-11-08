@@ -18,6 +18,7 @@ def predict(x, theta) -> np.array:
         None
 
 def gradient(x, y, theta):
+    try:
         if type(x) != np.ndarray or type(theta) != np.ndarray or type(y) != np.ndarray:
             return None
         if theta.ndim == 1:
@@ -36,8 +37,11 @@ def gradient(x, y, theta):
         x = np.hstack((np.ones((x.shape[0], 1)), x))
         nabla_J = x.T.dot(x.dot(theta) - y) / l
         return nabla_J
+    except:
+        return None
 
 def fit_(x, y, theta, alpha, max_iter):
+    try:
         if type(alpha) != float or type(max_iter) != int:
             return None
         new_theta = np.array([float(theta[0]), float(theta[1])]).reshape(-1, 1) 
@@ -46,6 +50,8 @@ def fit_(x, y, theta, alpha, max_iter):
             new_theta[0] = new_theta[0] - alpha * nabla_J[0]
             new_theta[1] = new_theta[1] - alpha * nabla_J[1]
         return new_theta
+    except:
+        return None
 
 def main_test():
     x = np.array([[12.4956442], [21.5007972], [31.5527382], [48.9145838], [57.5088733]])

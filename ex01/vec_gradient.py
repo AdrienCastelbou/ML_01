@@ -1,6 +1,7 @@
 import numpy as np
 
 def gradient(x, y, theta):
+    try:
         if type(x) != np.ndarray or type(theta) != np.ndarray or type(y) != np.ndarray:
             return None
         if theta.ndim == 1:
@@ -19,7 +20,8 @@ def gradient(x, y, theta):
         x = np.hstack((np.ones((x.shape[0], 1)), x))
         nabla_J = x.T.dot(x.dot(theta) - y) / l
         return nabla_J
-
+    except:
+        return None
 
 def main_test():
     x = np.array([12.4956442, 21.5007972, 31.5527382, 48.9145838, 57.5088733]).reshape((-1, 1))
