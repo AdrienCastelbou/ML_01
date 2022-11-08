@@ -44,8 +44,8 @@ def main():
     Y_model2 = linear_model2.predict_(Xpill)
     show_datas_with_predict(Xpill, Yscore, Y_model2)
     J_loss_function_evolution(lr = linear_model1,x= Xpill,y= Yscore)
-    print(MyLR.mse_(Yscore, Y_model1))
-    print(MyLR.mse_(Yscore, Y_model2))
+    print(linear_model1.mse_(Yscore, Y_model1))
+    print(linear_model1.mse_(Yscore, Y_model2))
 
 
 
