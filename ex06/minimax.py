@@ -4,6 +4,10 @@ def minmax(x):
     try:
         if type(x) != np.ndarray or len(x) == 0:
             return None
+        if x.ndim == 1:    
+            x = x.reshape(-1, 1)
+        if x.shape[0] != 1 and x.shape[1] != 1:
+            return None
         minmaxed = np.zeros(x.shape)
         min_ = np.min(x)
         max_ = np.max(x)

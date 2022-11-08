@@ -4,6 +4,10 @@ def zscore(x):
     try:
         if type(x) != np.ndarray or len(x) == 0:
             return None
+        if x.ndim == 1:    
+            x = x.reshape(-1, 1)
+        if x.shape[0] != 1 and x.shape[1] != 1:
+            return None
         normalized = np.zeros(x.shape)
         mean_ = np.mean(x)
         std_ = np.std(x)
